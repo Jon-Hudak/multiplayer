@@ -47,7 +47,8 @@ export async function getServerSideProps( { query }){
     return{
         props: {
             values,
-            filteredPlayers
+            filteredPlayers,
+            players
             
         }
     }
