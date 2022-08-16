@@ -79,7 +79,7 @@ export default function Game({ values, players, filteredPlayers }){
     <>
         <h1>Games :)</h1>
          {values.map((values)=> renderGameList(values, filteredPlayers))}
-         <ButtonContainer players={players} />
+         <ButtonContainer players={players} filteredPlayers={filteredPlayers} />
     </>
     )  
 }
