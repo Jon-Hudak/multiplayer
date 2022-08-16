@@ -1,5 +1,5 @@
 import { google } from 'googleapis'
-import ButtonContainer from '../components/ButtonContainer.js';
+import ButtonContainer from '../components/ButtonContainer.jsx';
 import GameList from '../components/gameList';
 
 const FREE_INDEX=0;
@@ -16,7 +16,7 @@ export async function getServerSideProps( { query }){
     //Auth
     const auth = await google.auth.getClient({scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']});
     const sheets = google.sheets({ version: 'v4', auth });
-    
+
     //Query
     const { id } = query;
     const range = `Sheet1!1:10`; //TODO: Expand to entire spreadsheet
@@ -26,7 +26,7 @@ export async function getServerSideProps( { query }){
         range,
     })
     const values=response.data.values;
-    //objectify(values);
+
     
 
     //Result
@@ -34,7 +34,7 @@ export async function getServerSideProps( { query }){
     const title = values[2]
     const players =[];
     const gameTitles=[];
-    const filteredPlayers=['Zach'];
+    const filteredPlayers=['Ben'];
    
     
     for (let i=FIRST_PLAYER_INDEX; i<values[HEADERS].length; i++){ 
@@ -55,7 +55,7 @@ export async function getServerSideProps( { query }){
 
 
 
-export default function Game({values, players, filteredPlayers }){
+export default function Game({ values, players, filteredPlayers }){
     function renderGameList (values, filteredPlayers){
 
         if (values[TITLE_INDEX]!=='Title'){
