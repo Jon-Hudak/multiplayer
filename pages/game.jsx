@@ -1,7 +1,7 @@
 import { google } from 'googleapis'
 import ButtonContainer from '../components/ButtonContainer.jsx';
 import GameList from '../components/gameList';
-
+import { useState } from 'react';
 const FREE_INDEX=0;
 const RACE_INDEX=1;
 const TITLE_INDEX=2;
@@ -34,7 +34,6 @@ export async function getServerSideProps( { query }){
     const title = values[2]
     const players =[];
     const gameTitles=[];
-    const filteredPlayers=['Ben'];
    
     
     for (let i=FIRST_PLAYER_INDEX; i<values[HEADERS].length; i++){ 
@@ -47,7 +46,6 @@ export async function getServerSideProps( { query }){
     return{
         props: {
             values,
-            filteredPlayers,
             players
             
         }
@@ -56,11 +54,13 @@ export async function getServerSideProps( { query }){
 
 
 
-export default function Game({ values, players, filteredPlayers }){
-    function renderGameList (values, filteredPlayers){
+export default function Game({ values, players }){
 
-        if (values[TITLE_INDEX]!=='Title'){
-            for (const player of filteredPlayers){
+    const [filter,setFilter]=useState(["Zach"])
+    function renderGameList (values, filter){
+
+        if (values[TITLE_INDEX]!=='Title' && filter!==[]){
+            for (const player of filter){
                 if (!values.includes(player)){
                     return null;
                 }
@@ -78,8 +78,8 @@ export default function Game({ values, players, filteredPlayers }){
     return(
     <>
         <h1>Games :)</h1>
-         {values.map((values)=> renderGameList(values, filteredPlayers))}
-         <ButtonContainer players={players} filteredPlayers={filteredPlayers} />
+         {values.map((values)=> renderGameList(values, filter))}
+         <ButtonContainer players={players} filter={filter} />
     </>
     )  
 }
