@@ -4,6 +4,7 @@ import GameList from "../components/GameBar";
 import { useState } from "react";
 import { AppCont } from "../components/Styles/AppCont.jsx";
 import GameBar from "../components/GameBar";
+import { GameBarSt } from "../components/Styles/GameBarSt.jsx";
 const FREE_INDEX = 0;
 const RACE_INDEX = 1;
 const TITLE_INDEX = 2;
@@ -21,7 +22,7 @@ export async function getServerSideProps({ query }) {
 
   //Query
   const { id } = query;
-  const range = `Sheet1!1:10`; //TODO: Expand to entire spreadsheet
+  const range = `Sheet1!1:50`; //TODO: Expand to entire spreadsheet
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
@@ -62,9 +63,9 @@ export default function Game({ values, players }) {
         }
       }
 
-      return <div key={value[TITLE_INDEX]}>{value[TITLE_INDEX]}</div>;
+      return <GameBarSt key={value[TITLE_INDEX]}>{value[TITLE_INDEX]}</GameBarSt>;
 
-      return null;
+      
     }
   }
   return (
