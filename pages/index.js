@@ -13,7 +13,7 @@ const FIRST_PLAYER_INDEX = 3;
 const HEADERS = 0;
 const FIRST_GAME_INDEX = 1;
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps() {
   //Auth
   const auth = await google.auth.getClient({
     scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
@@ -21,14 +21,14 @@ export async function getServerSideProps({ query }) {
   const sheets = google.sheets({ version: "v4", auth });
 
   //Query
-  const { id } = query;
-  const range = `Sheet1!1:50`; //TODO: Expand to entire spreadsheet
+  const range = `Sheet1`; //TODO: Expand to entire spreadsheet
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
   });
   const values = response.data.values;
+  
 
   //Result
 
@@ -77,7 +77,7 @@ export default function Game({ values, players }) {
           filter={filter}
           setFilter={setFilter}
         />
-        <GameList>{values.map((values) => renderGameList(values, filter))}</GameList>
+         <GameList id="gameListU">{values.map((values) => renderGameList(values, filter))}</GameList>
         
       </AppCont>
     </>
