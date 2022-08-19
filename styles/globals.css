@@ -21,8 +21,8 @@ a {
 
 body{
   background-color:black;
-  width:800px;
   display:flex;
+  width: 100vw;
 }
 
 

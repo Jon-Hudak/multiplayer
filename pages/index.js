@@ -70,7 +70,7 @@ export default function Game({ values, players }) {
   }
   return (
     <>
-      <h1>Games :)</h1>
+      
       <AppCont className="appContainer"> 
         <ButtonContainer
           players={players}
