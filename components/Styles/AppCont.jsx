@@ -4,6 +4,6 @@ export const AppCont=styled.div`
     display: flex;
     flex-direction: row;
     background-color: black;
-    width: 1000px;
+    width: 1500px;
     height: 900px;
 `
