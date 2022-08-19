@@ -1,6 +1,6 @@
 import { google } from "googleapis";
 import ButtonContainer from "../components/ButtonContainer.jsx";
-import GameList from "../components/GameBar";
+import  { GameList } from "../components//Styles/GameList";
 import { useState } from "react";
 import { AppCont } from "../components/Styles/AppCont.jsx";
 import GameBar from "../components/GameBar";
